@@ -65,8 +65,10 @@
 #include <iomanip>
 
 /////////////////////////////////////////////////////////////////////
-// default constructor
-
+/// <summary>
+/// default constructor
+/// </summary>
+/// 
 NeuralNet::NeuralNet()
 {
 	mNumInputs = 0;
@@ -80,11 +82,12 @@ NeuralNet::NeuralNet()
 }
 
 /////////////////////////////////////////////////////////////////////
-// constructs a NeuralNet object from a file containing a network
-// in serialized form
-//
-// fName (string) - the file containing the serialized data
-
+/// <summary>
+/// constructs a NeuralNet object from a file containing a network in 
+/// serialized form
+/// </summary>
+/// <param name="fname">the file containing the serialized data</param>
+/// 
 NeuralNet::NeuralNet(const string& fname)
 {
 	ifstream inFile(fname);
@@ -110,8 +113,10 @@ NeuralNet::NeuralNet(const string& fname)
 }
 
 /////////////////////////////////////////////////////////////////////
-// destructor
-
+/// <summary>
+/// destructor
+/// </summary>
+///
 NeuralNet::~NeuralNet()
 {
 }
@@ -121,10 +126,11 @@ NeuralNet::~NeuralNet()
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// setNumInputs - sets the number of input units
-//
-// numInputs (int) - the number of input units
-
+/// <summary>
+/// sets the number of input units
+/// </summary>
+/// <param name="numInputs">the number of input units</param>
+///
 void NeuralNet::setNumInputs(int numInputs)
 {
 	// ignore invalid values
@@ -135,10 +141,11 @@ void NeuralNet::setNumInputs(int numInputs)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setNumOutputs - sets the number of output units
-//
-// numOutputs (int) - the number of input units
-
+/// <summary>
+/// sets the number of output units
+/// </summary>
+/// <param name="numOutputs">the number of output units</param>
+///
 void NeuralNet::setNumOutputs(int numOutputs)
 {
 	// ignore invalid values
@@ -149,22 +156,22 @@ void NeuralNet::setNumOutputs(int numOutputs)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setOutputUnitType - set the output layer unit activation function 
-//                     type
-// 
-// unitType (ActiveT) - the activation function type
-
+/// <summary>
+/// sets the output layer unit activation function type
+/// </summary>
+/// <param name="unitType">the activation function type</param>
+///
 void NeuralNet::setOutputUnitType(ActiveT unitType)
 {
 	mOutUnitType = unitType;
 }
 
 /////////////////////////////////////////////////////////////////////
-// setOutputUnitSlope - set the output layer unit activation function 
-//                      slope value
-// 
-// slope (double) - the slope value for the activation function
-
+/// <summary>
+/// sets the output layer unit activation function slope value
+/// </summary>
+/// <param name="slope">the slope value for the activation function</param>
+///
 void NeuralNet::setOutputUnitSlope(double slope)
 {
 	// ignore invalid values
@@ -175,11 +182,11 @@ void NeuralNet::setOutputUnitSlope(double slope)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setOutputUnitSlope - set the output layer unit activation function 
-//                      amplify value
-// 
-// amplify (double) - the amplify value for the activation function
-
+/// <summary>
+/// sets the output layer unit activation function amplify value
+/// </summary>
+/// <param name="amplify">the amplify value for the activation function</param>
+///
 void NeuralNet::setOutputUnitAmplify(double amplify)
 {
 	// ignore invalid values
@@ -190,24 +197,25 @@ void NeuralNet::setOutputUnitAmplify(double amplify)
 }
 
 /////////////////////////////////////////////////////////////////////
-// addLayer - adds a new hidden layer
-//
-// The hidden layers are stored in the order of calls to this method
-// so the first call to addlayer creates the first hidden layer, the
-// second call creates the second layer and so on.
-//
-// numUnits (int) - the number of units in the hidden layer
-// unitType (ActiveT) - the layer unit activation function type
-//                      (defaults to unipolar)
-// initRange (double) - the range of the initial weighted connections
-//                      (defaults to 2 coressponding to -1 to +1)
-// slope (double) - the layer unit activation function slope value
-//                  (defaults to 1.0)
-// amplify (double) - the layer unit activation function amplify value
-//                    (defaults to 1.0)
-//
-// returns 0 if the layer is successfully added otherwise -1
-
+/// <summary>
+/// adds a new hidden layer - 
+/// 
+/// The hidden layers are stored in the order of calls to this method
+/// so the first call to addlayer creates the first hidden layer, the
+/// second call creates the second layer and so on.
+/// </summary>
+/// <param name="numUnits">the number of units in the hidden layer</param>
+/// <param name="unitType">the layer unit activation function type 
+///                        (defaults to unipolar)</param>
+/// <param name="initRange">the range of the initial weighted connection
+///                         values (defaults to 2 coressponding to -1 to +1)</param>
+/// <param name="slope">the layer unit activation function slope value 
+///                     (defaults to 1.0)</param>
+/// <param name="amplify">the layer unit activation function amplify 
+///                       value (defaults to 1.0)</param>
+///
+/// <returns>0 if the layer is successfully added otherwise -1</returns>
+/// 
 int NeuralNet::addLayer(int numUnits, ActiveT unitType, double initRange, double slope, double amplify)
 {
 	NNetWeightedConnect connect, output;
@@ -297,13 +305,14 @@ int NeuralNet::addLayer(int numUnits, ActiveT unitType, double initRange, double
 }
 
 /////////////////////////////////////////////////////////////////////
-// getLayerDetails - gets the details of the specified hidden layer 
-//
-// n (int) - the specified hidden layer index
-// unitType (ActiveT) - the layer unit activation function type
-// slope (double) - the layer unit activation function slope value
-// amplify (double) - the layer unit activation function amplify value
-
+/// <summary>
+/// gets the details of the specified hidden layer
+/// </summary>
+/// <param name="n">the specified hidden layer index</param>
+/// <param name="unitType">the layer unit activation function type</param>
+/// <param name="slope">the layer unit activation function slope value</param>
+/// <param name="amplify">the layer unit activation function amplify value</param>
+/// 
 void NeuralNet::getLayerDetails(int n, ActiveT& unitType, double& slope, double& amplify)
 {
 	if(n >= 0 && n < mNumLayers)
@@ -315,15 +324,16 @@ void NeuralNet::getLayerDetails(int n, ActiveT& unitType, double& slope, double&
 }
 
 /////////////////////////////////////////////////////////////////////
-// getResponse - gets the response of the network to the given input
-//
-// The number of elements in the inputs vector should correspond to 
-// the number of the input units.  If the inputs vector contains 
-// more elements than this, the additional input values are ignored.
-//
-// inputs (vector<double>) - the network input values
-// outputs (vector<double>) - the network output values
-
+/// <summary>
+/// gets the response of the network to the given input - 
+/// 
+/// The number of elements in the inputs vector should correspond to 
+/// the number of the input units.  If the inputs vector contains 
+/// more elements than this, the additional input values are ignored.
+/// </summary>
+/// <param name="inputs">the network input values</param>
+/// <param name="outputs">the network output values</param>
+/// 
 void NeuralNet::getResponse(const vector<double>& inputs, vector<double>& outputs)
 {
 	vector<double> inputVec;
@@ -416,14 +426,15 @@ void NeuralNet::getResponse(const vector<double>& inputs, vector<double>& output
 }
 
 /////////////////////////////////////////////////////////////////////
-// getActivations - gets the activation values for a specified layer
-//
-// This method is typically called by the training process to access
-// the activation values of the hidden and output layers.
-//
-// activations (vector<double>) - the activation values for the layer
-// layer (int) - the specified layer
-
+/// <summary>
+/// gets the activation values for a specified layer - 
+/// 
+/// This method is typically called by the training process to access
+/// the activation values of the hidden and output layers.
+/// </summary>
+/// <param name="activations">the activation values for the layer</param>
+/// <param name="layer">the specified layer</param>
+/// 
 void NeuralNet::getActivations(vector<double>& activations, int layer)
 {
 	if(layer >= 0 && layer < (int)mActivations.size())
@@ -433,15 +444,15 @@ void NeuralNet::getActivations(vector<double>& activations, int layer)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getUnitInputs - gets the unit input values for a specified layer
-//
-// This method is typically called by the training process to access
-// the input values to the hidden and output layer activation 
-// functions.
-//
-// inputs (vector<double>) - the unit input values for the layer
-// layer (int) - the specified layer
-
+/// <summary>
+/// gets the unit input values for a specified layer - 
+/// 
+/// This method is typically called by the training process to access
+/// the input values to the hidden and output layer activation functions.
+/// </summary>
+/// <param name="inputs">the unit input values for the layer</param>
+/// <param name="layer">the specified layer</param>
+/// 
 void NeuralNet::getUnitInputs(vector<double>& inputs, int layer)
 {
 	if(layer >= 0 && layer < (int)mUnitInputs.size())
@@ -451,17 +462,17 @@ void NeuralNet::getUnitInputs(vector<double>& inputs, int layer)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getWeightedConnect - gets the weighted connections for a specified 
-//                      layer
-//
-// This method is typically called by the training process to access
-// the weighted connections.
-//
-// wtConnect (NNetWeightedConnect) - the weighted connections between
-//                                   the specified layer and the next
-//                                   sequential layer in the network.
-// layer (int) - the specified layer
-
+/// <summary>
+/// gets the weighted connections for a specified layer - 
+/// 
+/// This method is typically called by the training process to access 
+/// the weighted connections.
+/// </summary>
+/// <param name="wtConnect">the weighted connections between the 
+///                         specified layer and the next sequential
+///                         layer in the network.</param>
+/// <param name="layer">the specified layer</param>
+/// 
 void NeuralNet::getWeightedConnect(NNetWeightedConnect& wtConnect, int layer)
 {
 	if(layer >= 0 && layer < (int)mLayers.size())
@@ -471,17 +482,17 @@ void NeuralNet::getWeightedConnect(NNetWeightedConnect& wtConnect, int layer)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setWeightedConnect - sets the weighted connections for a specified 
-//                      layer
-//
-// This method is typically called by the training process to update
-// the weighted connections.
-//
-// wtConnect (NNetWeightedConnect) - the weighted connections between
-//                                   the specified layer and the next
-//                                   sequential layer in the network.
-// layer (int) - the specified layer
-
+/// <summary>
+/// sets the weighted connections for a specified layer - 
+/// 
+/// This method is typically called by the training process to update 
+/// the weighted connections.
+/// </summary>
+/// <param name="wtConnect">the weighted connections between the 
+///                         specified layer and the next sequential 
+///                         layer in the network</param>
+/// <param name="layer">the specified layer</param>
+/// 
 void NeuralNet::setWeightedConnect(const NNetWeightedConnect& wtConnect, int layer)
 {
 	if(layer >= 0 && layer < (int)mLayers.size())
@@ -491,12 +502,12 @@ void NeuralNet::setWeightedConnect(const NNetWeightedConnect& wtConnect, int lay
 }
 
 /////////////////////////////////////////////////////////////////////
-// writeToFile - serializes the network and writes it to a file
-//
-// fname (string) - the file to write the data to
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// serializes this network and writes it to a file
+/// </summary>
+/// <param name="fname">the file to write the data to</param>
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int NeuralNet::writeToFile(const string& fname)
 {
 	ofstream outFile(fname);
@@ -518,10 +529,11 @@ int NeuralNet::writeToFile(const string& fname)
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// serialize - generates a string representation of the network
-//
-// returns a string representation of the network
-
+/// <summary>
+/// generates a string representation of this network
+/// </summary>
+/// <returns>a string representation of this network</returns>
+/// 
 string NeuralNet::serialize()
 {
 	vector<double> weights;
@@ -548,8 +560,8 @@ string NeuralNet::serialize()
 
 		// get the unit type, slope and amplification for the hidden layer
 		if(i < mNumLayers) nUnit = (int)mActiveUnits[i];
-		if(i < mNumLayers) sUnit = (int)mActiveSlope[i];
-		if(i < mNumLayers) aUnit = (int)mActiveAmplify[i];
+		if(i < mNumLayers) sUnit = mActiveSlope[i];
+		if(i < mNumLayers) aUnit = mActiveAmplify[i];
 
 		outStream << "L " << nIn << " " << nOut << " " << nUnit << " " << sUnit << " " << aUnit << " ";
 
@@ -571,10 +583,11 @@ string NeuralNet::serialize()
 }
 
 /////////////////////////////////////////////////////////////////////
-// deserialize - instantiates a network from a string representation
-//
-// inData (string) - a string representation of a network
-
+/// <summary>
+/// instantiates this network from a given string representation
+/// </summary>
+/// <param name="inData">the given string representation of the network</param>
+/// 
 void NeuralNet::deserialize(const string& inData)
 {	
 	istringstream inStream(inData);	

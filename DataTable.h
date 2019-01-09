@@ -22,7 +22,11 @@
 using namespace std;
 
 /////////////////////////////////////////////////////////////////////
-
+/// <summary>
+/// This class is a representation of a database table that can be
+/// easily manipulated for use in mathematical or statistical analysis.
+/// </summary>
+///
 class DataTable
 {
 public:
@@ -32,10 +36,14 @@ public:
 	// constructs a DataTable object from a .CSV file representation
 	DataTable(const string& fName, bool header = true);
 	
-	// returns the number of rows in the table
+    /// <summary>
+    /// <returns>the number of rows in the table</returns>
+    /// </summary>
 	int getNumRows() const { return m_Rows; }
 
-	// returns the number of columns in the table
+	/// <summary>
+	/// <returns>the number of columns in the table</returns>
+	/// </summary>
 	int getNumCols() const { return m_Cols; }
 
 	// clears a DataTable object ready for re-use
@@ -86,24 +94,32 @@ private:
 	// reads in the table data from a file stream buffer
 	void readFromStream(const string& fName, bool header = true);
 
-private:	
-	int m_Rows;		// the number of rows in the table
-	int m_Cols;		// the number of columns in the table
-	bool m_Header;	// true if the table has a header row containing column names
+private:
+	/// <summary>the number of rows in the table</summary>
+	int m_Rows;
 
-	vector<string> m_ColumnNames;		// the column names (if supplied)
+	/// <summary>the number of columns in the table</summary>
+	int m_Cols;
+
+	/// <summary>true if the table has a header row containing column names</summary>
+	bool m_Header;
+
+	/// <summary>the column names (if supplied)</summary>
+	vector<string> m_ColumnNames;
 	
-	// the raw table data - each row is a vector of column values in string format
-	// and the table consists of a vector of rows
+	/// <summary>
+	/// the raw table data - each row is a vector of column values in string format
+	/// and the table consists of a vector of rows
+	/// </summary>
 	vector<vector<string> > m_RawData;
 
-	// keeps track of the automatic alias values used by each column
+	/// <summary>keeps track of the automatic alias values used by each column</summary>
 	vector<double> m_AliasVec;	
 
-	// maps a string column name to a corresponding numeric vector index
+	/// <summary>maps a string column name to a corresponding numeric vector index</summary>
 	map<string, int> m_ColIdx;
 
-	// maps a string name to a numeric value (in string format)
+	/// <summary>maps a string name to a numeric value (in string format)</summary>
 	map<string, string> m_Aliases;
 };
 

@@ -59,24 +59,24 @@ const double FPMAX = numeric_limits<double>::max();
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// createTrainingSet - creates the neural network training set
-//
-// The input and target vectors are extracted from the database
-// file and stored within vectors so they can be used by the 
-// neural network training routine.  In these examples both the
-// input and target vectors contain only single values. The values
-// are also scaled so that they are less than 1 in magnitude - this
-// helps the network training process.
-//
-// fName (string) - the name of the file containing the training data
-// xCol (string) - the name of the column representing the x-values
-// yYol (string) - the name of the column representing the y-values
-// scale (double) - used to scale the data to make all values < 1
-// inVecs (vector<vector<double> >) - the training set input vectors
-// targetVecs (vector<vector<double> >) - the training set target vectors
-//
-// returns -1 if there is a problem loading the database file otherwise 0
-
+/// <summary>
+/// creates the neural network training set - 
+/// 
+/// The input and target vectors are extracted from the database
+/// file and stored within vectors so that they can be used by the 
+/// neural network training routine.  In these examples both the
+/// input and target vectors contain only single values. The values
+/// are also scaled so that they are less than 1 in magnitude - this
+/// helps the network training process.
+/// </summary>
+/// <param name="fName">the name of the file containing the training data</param>
+/// <param name="xCol">the name of the column representing the x-values</param>
+/// <param name="yCol">the name of the column representing the y-values</param>
+/// <param name="scale">used to scale the data to make all values less than 1</param>
+/// <param name="inVecs">the training set input vectors</param>
+/// <param name="targetVecs">the training set target vectors</param>
+/// <returns>-1 if there is a problem loading the database file otherwise 0</returns>
+/// 
 int createTrainingSet(const string& fName, const string& xCol, const string& yCol, double scale,
 					  vector<vector<double> >& inVecs, vector<vector<double> >& targetVecs)
 {
@@ -121,24 +121,25 @@ int createTrainingSet(const string& fName, const string& xCol, const string& yCo
 }
 
 /////////////////////////////////////////////////////////////////////
-// trainNNet - trains the neural network
-//
-// Trains the supplied neural network using the given learning
-// constant, momentum term (this can be zero), input and target
-// vectors.  Training continues until the maximum number of
-// iterations has been exceeded or the total network error is
-// less than the supplied minimum network error value.  In the
-// former case the trained neural network is the network that
-// returned the minimum network error.
-//
-// net (NeuralNet) - the neural network to be trained
-// learnConst (double) - the learning constant
-// momentum (double) - the momentum term
-// minNetError (double) - the minimum network error
-// nIterations (int) - the maximum number of iterations
-// inVecs (vector<vector<double> >) - the training set input vectors
-// targetVecs (vector<vector<double> >) - the training set target vectors
-
+/// <summary>
+/// trains the neural network - 
+/// 
+/// Trains the supplied neural network using the given learning
+/// constant, momentum term (this can be zero), input and target
+/// vectors.  Training continues until the maximum number of
+/// iterations has been exceeded or the total network error is
+/// less than the supplied minimum network error value.  In the
+/// former case the trained neural network is the network that
+/// achieved the minimum network error.
+/// </summary>
+/// <param name="net">the neural network to be trained</param>
+/// <param name="learnConst">the learning constant</param>
+/// <param name="momentum">the momentum term</param>
+/// <param name="minNetError">the minimum network error</param>
+/// <param name="nIterations">the maximum number of iterations</param>
+/// <param name="inVecs">the training set input vectors</param>
+/// <param name="targetVecs">the training set target vectors</param>
+/// 
 void trainNNet(NeuralNet& net, double learnConst, double momentum, double minNetError, int nIterations,
 			   const vector<vector<double> >& inVecs, const vector<vector<double> >& targetVecs)
 {
@@ -199,24 +200,24 @@ void trainNNet(NeuralNet& net, double learnConst, double momentum, double minNet
 }
 
 /////////////////////////////////////////////////////////////////////
-// generateTrainedOutput - outputs the input x-values and the trained
-//                         y-values to a file
-//
-// The supplied neural network generates response values corresponding
-// to the given set of input vectors. In these examples both the input
-// and output vectors contain only single values and this procedure
-// makes the assumption that the supplied network and input vectors
-// correspond to this format.  The same scale factor used to create
-// the training set should also be supplied so that the output data
-// is the same scale as the original data file.  The re-scaled input
-// x-values and response y-values are written to a file with the given
-// name.
-//
-// net (NeuralNet) - the trained neural network
-// inVecs (vector<vector<double> >) - the training set input vectors
-// scale (double) - used to scale the data back to its original size
-// fName (string) - the name of the file the data will be written to
-
+/// <summary>
+/// outputs the input x-values and the trained y-values to a file - 
+/// 
+/// The supplied neural network generates response values corresponding
+/// to the given set of input vectors. In these examples both the input
+/// and output vectors contain only single values and this procedure
+/// makes the assumption that the supplied network and input vectors
+/// correspond to this format.  The same scale factor used to create
+/// the training set should also be supplied so that the output data
+/// is the same scale as the original data file.  The re-scaled input
+/// x-values and response y-values are written to a file with the given
+/// name.
+/// </summary>
+/// <param name="net">the trained neural network</param>
+/// <param name="inVecs">the training set input vectors</param>
+/// <param name="scale">used to scale the data back to its original size</param>
+/// <param name="fname">the name of the file the data will be written to</param>
+/// 
 void generateTrainedOutput(NeuralNet& net, const vector<vector<double> >& inVecs, double scale, const string& fname)
 {
 	ofstream outFile(fname);
@@ -253,24 +254,25 @@ void generateTrainedOutput(NeuralNet& net, const vector<vector<double> >& inVecs
 }
 
 /////////////////////////////////////////////////////////////////////
-// carryOutTraining - helper procedure to train the neural network
-//
-// This procedure calls the procedures to create the training set,
-// train the neural network and write the trained responses to a file.
-//
-// net (NeuralNet) - the neural network to be trained
-// learnConst (double) - the learning constant
-// momentum (double) - the momentum term
-// minNetError (double) - the minimum network error
-// nIterations (int) - the maximum number of iterations
-// scaleFac (double) - used to scale the data to make all values < 1
-// dataFile (string) - the name of the file containing the training data
-// xCol (string) - the name of the column representing the x-values
-// yYol (string) - the name of the column representing the y-values
-// outputFile (string) - the name of the file the trained data will be written to
-//
-// returns -1 if there is a problem loading the training set otherwise 0
-
+/// <summary>
+/// helper procedure to train the neural network - 
+/// 
+/// This procedure calls the procedures to create the training set,
+/// train the neural network and write the trained responses to a file.
+/// </summary>
+/// <param name="net">the neural network to be trained</param>
+/// <param name="learnConst">the learning constant</param>
+/// <param name="momentum">the momentum term</param>
+/// <param name="minNetError">the minimum network error</param>
+/// <param name="nIterations">the maximum number of iterations</param>
+/// <param name="scaleFac">used to scale the data to make all values less than 1</param>
+/// <param name="dataFile">the name of the file containing the training data</param>
+/// <param name="xCol">the name of the column representing the x-values</param>
+/// <param name="yCol">the name of the column representing the y-values</param>
+/// <param name="outputFile">the name of the file the trained data will be written to</param>
+///
+/// <returns>-1 if there is a problem loading the training set otherwise 0</returns>
+/// 
 int carryOutTraining(NeuralNet& net, double learnConst, double momentum, 
 					  double minNetError, int nIterations, double scaleFac,
 					  const string& dataFile, const string& xCol, const string& yCol,
@@ -297,27 +299,28 @@ int carryOutTraining(NeuralNet& net, double learnConst, double momentum,
 }
 
 /////////////////////////////////////////////////////////////////////
-// validateModelFit - generates responses to input values not part
-//                    of the training set and writes this to a file
-//
-// The trained neural network is built from its file representation
-// and responses are generated from input values that are largely
-// (though not exclusively) absent from the training set. In these
-// examples both the input and output vectors contain only single
-// values and this procedure makes the assumption that the supplied
-// network and input vectors correspond to this format.  The same 
-// scale factor used to create the training set should also be 
-// supplied so that the output data is the same scale as the
-// original data file.  The validation set x-values and response
-// y-values are written to a file with the given name.
-//
-// xStart (double) - the starting x-value of the validation set
-// xEnd (double) - the ending x-value of the validation set
-// xStep (double) - the step-size of the validation set
-// scale (double) - used to scale the data back to its original size
-// netFname (string) - the name of the file containing the trained net
-// outFname (string) - the name of the file the data will be written to
-
+/// <summary>
+/// generates responses to input values not part of the training set 
+/// and writes this to a file - 
+/// 
+/// The trained neural network is built from its file representation
+/// and responses are generated from input values that are largely
+/// (though not exclusively) absent from the training set. In these
+/// examples both the input and output vectors contain only single
+/// values and this procedure makes the assumption that the supplied
+/// network and input vectors correspond to this format.  The same 
+/// scale factor used to create the training set should also be 
+/// supplied so that the output data is the same scale as the
+/// original data file.  The validation set x-values and response
+/// y-values are written to a file with the given name.
+/// </summary>
+/// <param name="xStart">the starting x-value of the validation set</param>
+/// <param name="xEnd">the ending x-value of the validation set</param>
+/// <param name="xStep">the step-size of the validation set</param>
+/// <param name="scale">used to scale the data back to its original size</param>
+/// <param name="netFname">the name of the file containing the trained net</param>
+/// <param name="outFname">the name of the file the data will be written to</param>
+/// 
 void validateModelFit(double xStart, double xEnd, double xStep, double scale, const string& netFname, const string& outFname)
 {
 	NeuralNet net(netFname);		// construct the neural network from a data file
@@ -351,28 +354,30 @@ void validateModelFit(double xStart, double xEnd, double xStep, double scale, co
 	}
 	else
 	{
-		cout << "ERROR: Writing to file - unable to open or create the file: " << netFname << endl;
+		cout << "ERROR: Writing to file - unable to open or create the file: " << outFname << endl;
 	}
 }
 
 /////////////////////////////////////////////////////////////////////
-// modelFitExample1 - models the relationship between 'horsepower' 
-//                    and 'mpg' in the 'Auto' database
-//
-// With the current settings the network is trained in only 6 
-// iterations (compiled under MSVC 10). Try changing the values of
-// outSlope, hiddenSlope and hiddenAmplify to see how they effect
-// the number of iterations and compare the different solutions on
-// the same plot as the training set to see how they fit the data.
-// Try out the different activation functions as well.
-//
-// N.B. leave outAmplify set to 1 so that the network output values
-// are in the correct range. The training set data is scaled so that
-// all values are less than 1 in magnitude (to help the training 
-// process). The network output values need to be in the range 0 - 1
-// so thet they can be re-scaled to match the data in the original
-// training set.
-
+/// <summary>
+/// models the relationship between 'horsepower' and 'mpg' in the 
+/// 'Auto' database
+///
+/// With the current settings the network is trained in only 6 
+/// iterations (compiled under MSVC 10). Try changing the values of
+/// outSlope, hiddenSlope and hiddenAmplify to see how they effect
+/// the number of iterations and compare the different solutions on
+/// the same plot as the training set to see how they fit the data.
+/// Try out the different activation functions as well.
+///
+/// N.B. leave outAmplify set to 1 so that the network output values
+/// are in the correct range. The training set data is scaled so that
+/// all values are less than 1 in magnitude (to help the training 
+/// process). The network output values need to be in the range 0 - 1
+/// so thet they can be re-scaled to match the data in the original
+/// training set.
+/// </summary>
+/// 
 void modelFitExample1()
 {
 	string sDbaseFile = "Auto.csv";                 // the input file containing the database
@@ -453,13 +458,15 @@ void modelFitExample1()
 }
 
 /////////////////////////////////////////////////////////////////////
-// modelFitExample2 - models the relationship between 'Balance' 
-//                    and 'Rating' in the 'Credit' database
-//
-// The Gaussian and SoftPlus activation functions both provide 
-// differen fits to the data. However, other activation types 
-// including Tanh and Sine do not fit the data very well at all.
-
+/// <summary>
+/// models the relationship between 'Balance' and 'Rating' in the 
+/// 'Credit' database
+///
+/// The Gaussian and SoftPlus activation functions both provide 
+/// differen fits to the data. However, other activation types 
+/// including Tanh and Sine do not fit the data very well at all.
+/// </summary>
+///
 void modelFitExample2()
 {
 	string sDbaseFile = "Credit.csv";               // the input file containing the database
@@ -511,13 +518,15 @@ void modelFitExample2()
 }
 
 /////////////////////////////////////////////////////////////////////
-// modelFitExample3 - models the relationship between 'age' 
-//                    and 'wage' in the 'Wage' database
-//
-// The ISRU (Inverse square root unit), Elliot and Soft Sign 
-// activation functions all provide fits to the data but they also
-// exhibit subtle differences.
-
+/// <summary>
+/// models the relationship between 'age' and 'wage' in the 'Wage' 
+/// database
+///
+/// The ISRU (Inverse square root unit), Elliot and Soft Sign 
+/// activation functions all provide fits to the data but they also
+/// exhibit subtle differences.
+/// </summary>
+///
 void modelFitExample3()
 {
 	string sDbaseFile = "Wage.csv";                 // the input file containing the database
@@ -568,10 +577,11 @@ void modelFitExample3()
 }
 
 /////////////////////////////////////////////////////////////////////
-// runExample - helper procedure to run the required example
-//
-// nExample (int) - the example to run
-
+/// <summary>
+/// helper procedure to run the required example
+/// </summary>
+/// <param name="nExample">the example to run</param>
+/// 
 void runExample(int nExample)
 {
 	switch(nExample)
@@ -591,7 +601,11 @@ void runExample(int nExample)
 }
 
 /////////////////////////////////////////////////////////////////////
-
+/// <summary>
+/// provides the user with a simple menu to pick and run each of the 
+/// three example model fits
+/// </summary>
+/// 
 int main()
 {	
 	// provide the user with a simple menu to pick and run the example model fits

@@ -15,7 +15,10 @@
 #include "NeuralNet.h"
 
 /////////////////////////////////////////////////////////////////////
-
+/// <summary>
+/// This class provides a framework for training a neural network.
+/// </summary>
+/// 
 class NNetTrainer
 {
 public:
@@ -25,22 +28,30 @@ public:
 	// sets the learning constant training parameter
 	void setLearningConstant(double learnConst);
 
-	// returns the learning constant training parameter
+	/// <summary>
+	/// <returns>the learning constant training parameter</returns>
+	/// </summary>
 	double getLearningConst() const { return mLearnConst; }
 
 	// sets the momentum training parameter
 	void setMomentum(double momentum);
 
-	// returns the momentum training parameter
+	/// <summary>
+	/// <returns>the momentum training parameter</returns>
+	/// </summary>
 	double getMomentum() const { return mMomentum; }
 
-	// returns the total network error
+	/// <summary>
+	/// <returns>the total network error</returns>
+	/// </summary>
 	double getNetError() const { return mNetError; }
 
-	// resets the total network error to zero
+	/// <summary>
+	/// resets the total network error to zero
+	/// </summary>
 	void resetNetError() { mNetError = 0; }
-
-	// trains the supplied neural network
+	
+	// trains the supplied neural network	
 	void trainNeuralNet(NeuralNet& nNet);
 
 	// adds an individual training vector and 
@@ -77,19 +88,26 @@ private:
 	double getGradient(ActiveT unitType, double slope, double amplify, double x);
 
 private:
-	double mNetError;		// the network error
-	double mLearnConst;		// the learning constant
-	double mMomentum;		// the momentum parameter
+	/// <summary>the network error</summary>
+	double mNetError;
 
-	// keeps track of the output layer weightings for use by the momentum term
+	/// <summary>the learning constant</summary>
+	double mLearnConst;
+
+	/// <summary>the momentum parameter</summary>
+	double mMomentum;
+
+	/// <summary>keeps track of the output layer weightings for use by the momentum term</summary>
 	vector<double> mPrevOutWt;
 
-	// keeps track of the hidden layers weightings for use by the momentum term
+	/// <summary>keeps track of the hidden layer weightings for use by the momentum term</summary>
 	vector<double> mPrevHidWt;
 
-	// the training set
-	vector<vector<double> > mTrainInput;    // the training set input values
-	vector<vector<double> > mTrainTarget;   // the training set target values
+	/// <summary>the training set input values</summary>
+	vector<vector<double> > mTrainInput;
+
+	/// <summary>the training set target values</summary>
+	vector<vector<double> > mTrainTarget;
 };
 
 /////////////////////////////////////////////////////////////////////

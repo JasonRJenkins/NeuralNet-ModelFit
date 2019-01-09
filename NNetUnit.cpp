@@ -71,8 +71,10 @@
 #include "NNetUnit.h"
 
 /////////////////////////////////////////////////////////////////////
-// default constructor
-
+/// <summary>
+/// default constructor
+/// </summary>
+/// 
 NNetUnit::NNetUnit()
 {
 	// default unit settings
@@ -83,12 +85,13 @@ NNetUnit::NNetUnit()
 }
 
 /////////////////////////////////////////////////////////////////////
-// constructs a neuron with the given activation function and settings
-//
-// activationMode (ActiveT) - the unit activation function type
-// slope (double) - the slope parameter value (defaults to 1)
-// amplify (double) - the amplify parameter value (defaults to 1)
-
+/// <summary>
+/// constructs a neuron with the given activation function and settings
+/// </summary>
+/// <param name="activationMode">the unit activation function type</param>
+/// <param name="slope">the slope parameter value (defaults to 1)</param>
+/// <param name="amplify">the amplify parameter value (defaults to 1)</param>
+/// 
 NNetUnit::NNetUnit(ActiveT activationMode, double slope, double amplify)
 {
 	mInput = -1;
@@ -108,8 +111,10 @@ NNetUnit::NNetUnit(ActiveT activationMode, double slope, double amplify)
 }
 
 /////////////////////////////////////////////////////////////////////
-// destructor
-
+/// <summary>
+/// destructor
+/// </summary>
+///
 NNetUnit::~NNetUnit()
 {
 }
@@ -119,13 +124,14 @@ NNetUnit::~NNetUnit()
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// setSlope - sets the slope parameter of the activation function
-//
-// This parameter can be used to adjust the sensitivity of the 
-// activation function (see above).
-// 
-// slope (double) - the slope parameter value
-
+/// <summary>
+/// sets the slope parameter of the activation function - 
+///
+/// This parameter can be used to adjust the sensitivity of the 
+/// activation function.
+/// </summary>
+/// <param name="slope">the slope parameter value</param>
+///
 void NNetUnit::setSlope(double slope)
 {
 	// ignore invalid values
@@ -136,14 +142,15 @@ void NNetUnit::setSlope(double slope)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setAmplify - sets the amplify parameter of the activation function
-//
-// This parameter can be used to increase (amplify > 1) or decrease 
-// (amplify < 1) the activation value which alters the range of the 
-// function.
-//
-// amplify (double) - the amplify parameter value
-
+/// <summary>
+/// sets the amplify parameter of the activation function - 
+///
+/// This parameter can be used to increase (amplify greater than 1) 
+/// or decrease (amplify less than 1) the activation value which 
+/// alters the range of the function.
+/// </summary>
+/// <param name="amplify">the amplify parameter value</param>
+///
 void NNetUnit::setAmplify(double amplify)
 {
 	// ignore invalid values
@@ -154,10 +161,11 @@ void NNetUnit::setAmplify(double amplify)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getActivation - gets the activation value of the neuron
-//
-// returns the activation value
-
+/// <summary>
+/// gets the activation value of the neuron
+/// </summary>
+/// <returns>the activation value</returns>
+/// 
 double NNetUnit::getActivation()
 {
 	double activation = 0;

@@ -45,8 +45,10 @@
 #include "NNetWeightedConnect.h"
 
 /////////////////////////////////////////////////////////////////////
-// default constructor
-
+/// <summary>
+/// default constructor
+/// </summary>
+/// 
 NNetWeightedConnect::NNetWeightedConnect()
 {
 	// default connection settings
@@ -55,11 +57,12 @@ NNetWeightedConnect::NNetWeightedConnect()
 }
 
 /////////////////////////////////////////////////////////////////////
-// constructs a connection between the given number of nodes
-//
-// numInNodes (int) - the number of input nodes
-// numOutNodes (int) - the number of output nodes
-
+/// <summary>
+/// constructs a connection between the given number of nodes
+/// </summary>
+/// <param name="numInNodes">the number of input nodes</param>
+/// <param name="numOutNodes">the number of output nodes</param>
+/// 
 NNetWeightedConnect::NNetWeightedConnect(int numInNodes, int numOutNodes)
 {
 	// ignore invalid data
@@ -73,8 +76,10 @@ NNetWeightedConnect::NNetWeightedConnect(int numInNodes, int numOutNodes)
 }
 
 /////////////////////////////////////////////////////////////////////
-// destructor
-
+/// <summary>
+/// destructor
+/// </summary>
+///
 NNetWeightedConnect::~NNetWeightedConnect()
 {
 }
@@ -84,15 +89,16 @@ NNetWeightedConnect::~NNetWeightedConnect()
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// setNumNodes - sets the number of input and output nodes
-//
-// The weighted connections are randomly initialised over the range
-// -(initRange/2) to +(initRange/2)
-//
-// numInNodes (int) - the number of input nodes
-// numOutNodes (int) - the number of output nodes
-// initRange (double) - the range used for random initialisation
-
+/// <summary>
+/// sets the number of input and output nodes - 
+/// 
+/// The weighted connections are randomly initialised over the range
+/// -(initRange/2) to +(initRange/2).
+/// </summary>
+/// <param name="numInNodes">the number of input nodes</param>
+/// <param name="numOutNodes">the number of output nodes</param>
+/// <param name="initRange">the range used for random initialisation</param>
+/// 
 void NNetWeightedConnect::setNumNodes(int numInNodes, int numOutNodes, double initRange)
 {
 	// ignore invalid data
@@ -106,14 +112,15 @@ void NNetWeightedConnect::setNumNodes(int numInNodes, int numOutNodes, double in
 }
 
 /////////////////////////////////////////////////////////////////////
-// setInputs - sets the input values for the weighted connection
-//
-// The input value for the first input node is the first value stored
-// in the vector and the input value for the second input node is the
-// second value stored in the vector and so on.
-//
-// inputs (vector<double>) - a vector of input values
-
+/// <summary>
+/// sets the input values for the weighted connection - 
+/// 
+/// The input value for the first input node is the first value stored
+/// in the list and the input value for the second input node is the
+/// second value stored in the list and so on.
+/// </summary>
+/// <param name="inputs">a vector of input values</param>
+/// 
 void NNetWeightedConnect::setInputs(const vector<double>& inputs)
 {
 	// make sure the size of the input vector corresponds to the number of input nodes
@@ -130,13 +137,14 @@ void NNetWeightedConnect::setInputs(const vector<double>& inputs)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getOutputs - gets the output values for the weighted connection
-//
-// The output values are calculated by applying the weighted
-// connections to the input node values.
-//
-// outputs (vector<double>) - the output values
-
+/// <summary>
+/// gets the output values for the weighted connection - 
+/// 
+/// The output values are calculated by applying the weighted
+/// connections to the input node values.
+/// </summary>
+/// <param name="outputs">the output values</param>
+/// 
 void NNetWeightedConnect::getOutputs(vector<double>& outputs)
 {
 	// resize the output vector if necessary
@@ -151,13 +159,14 @@ void NNetWeightedConnect::getOutputs(vector<double>& outputs)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getWeightVector - gets the weighted connections vector for a given
-//                   output node
-//
-// This method is typically called when training the network.
-//
-// node (int) - the index of the output node
-
+/// <summary>
+/// gets the weighted connections vector for a given output node - 
+/// 
+/// This method is typically called when training the network.
+/// </summary>
+/// <param name="node">the index of the output node</param>
+/// <param name="weights">the weighted connections vector</param>
+/// 
 void NNetWeightedConnect::getWeightVector(int node, vector<double>& weights)
 {
 	if(node < (int)mWeights.size() && node >= 0)
@@ -174,14 +183,14 @@ void NNetWeightedConnect::getWeightVector(int node, vector<double>& weights)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setWeightVector - sets the weighted connections vector for a given 
-//                   output node 
-//
-// This method is typically called by the training process to update
-// the weighted connections.
-//
-// node (int) - the index of the output node
-
+/// <summary>
+/// sets the weighted connections vector for a given output node - 
+/// 
+/// This method is typically called by the training process to update the weighted connections.
+/// </summary>
+/// <param name="node">the index of the output node</param>
+/// <param name="weights">the weighted connections vector</param>
+/// 
 void NNetWeightedConnect::setWeightVector(int node, const vector<double>& weights)
 {
 	if(node < (int)mWeights.size() && node >= 0)
@@ -201,13 +210,14 @@ void NNetWeightedConnect::setWeightVector(int node, const vector<double>& weight
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// initialiseWeights - randomly initialises the weighted connections
-//
-// The weighted connections are randomly initialised over the range
-// -(initRange/2) to +(initRange/2)
-//
-// initRange (double) - the range used for random initialisation
-
+/// <summary>
+/// randomly initialises the weighted connections - 
+/// 
+/// The weighted connections are randomly initialised over the range
+/// -(initRange/2) to +(initRange/2).
+/// </summary>
+/// <param name="initRange">the range used for random initialisation</param>
+/// 
 void NNetWeightedConnect::initialiseWeights(double initRange)
 {	
 	// initialise a weight vector for each of the output nodes
@@ -231,9 +241,10 @@ void NNetWeightedConnect::initialiseWeights(double initRange)
 }
 
 /////////////////////////////////////////////////////////////////////
-// calculateOutput - calculates the output values for all the output
-//                   nodes
-
+/// <summary>
+/// calculates the output values for all the output nodes
+/// </summary>
+/// 
 void NNetWeightedConnect::calculateOutput()
 {
 	if(!mOutputs.empty())
@@ -250,11 +261,13 @@ void NNetWeightedConnect::calculateOutput()
 }
 
 /////////////////////////////////////////////////////////////////////
-// getNodeValue - calculates the output value for the given output
-//                nodes
-//
-// node (int) - the index of the output node
-
+/// <summary>
+/// calculates the output value for the given output node
+/// </summary>
+/// <param name="node">the index of the output node</param>
+///
+/// <returns>the value of the output node</returns>
+/// 
 double NNetWeightedConnect::getNodeValue(int node)
 {
 	double value = 0;

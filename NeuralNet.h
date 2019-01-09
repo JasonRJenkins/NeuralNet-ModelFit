@@ -4,7 +4,7 @@
 //
 // Author: Jason Jenkins
 //
-// This class is a representation of a feedforward neural network.
+// This class is a representation of a feed forward neural network.
 //
 /////////////////////////////////////////////////////////////////////
 
@@ -24,7 +24,10 @@ using namespace std;
 #include "NNetWeightedConnect.h"
 
 /////////////////////////////////////////////////////////////////////
-
+/// <summary>
+/// This class is a representation of a feed forward neural network.
+/// </summary>
+/// 
 class NeuralNet
 {
 public:
@@ -49,22 +52,34 @@ public:
 	// set the output layer unit activation function amplify value
 	void setOutputUnitAmplify(double amplify);
 	
-	// returns the number of input units
+	/// <summary>
+	/// <returns>the number of input units</returns>
+	/// </summary>
 	int getNumInputs() const { return mNumInputs; }
 	
-	// returns the number of output units
+	/// <summary>
+	/// <returns>the number of output units</returns>
+	/// </summary>
 	int getNumOutputs() const { return mNumOutputs; }
 	
-	// returns the number of hidden layers
+	/// <summary>
+	/// <returns>the number of hidden layers</returns>
+	/// </summary>
 	int getNumLayers() const { return mNumLayers; }
 
-	// returns the output layer unit activation function type
+	/// <summary>
+	/// <returns>the output layer unit activation function type</returns>
+	/// </summary>
 	ActiveT getOutputUnitType() const { return mOutUnitType; }
 
-	// returns the output layer unit activation function slope value
+	/// <summary>
+	/// <returns>the output layer unit activation function slope value</returns>
+	/// </summary>
 	double getOutputUnitSlope() const { return mOutUnitSlope; };
 
-	// returns the output layer unit activation function amplify value
+	/// <summary>
+	/// <returns>the output layer unit activation function amplify value</returns>
+	/// </summary>
 	double getOutputUnitAmplify() const { return mOutUnitAmplify; };
 
 	// adds a new hidden layer
@@ -100,35 +115,40 @@ private:
 	void deserialize(const string& inData);
 	
 private:
-	int mNumInputs;    // the number of input units
-	int mNumOutputs;   // the number of output units
-	int mNumLayers;    // the number of hidden layers
+	/// <summary>the number of input units</summary>
+	int mNumInputs;
+
+	/// <summary>the number of output units</summary>
+	int mNumOutputs;
+
+	/// <summary>the number of hidden layers</summary>
+	int mNumLayers;
 	
-	// the output layer unit activation function type
+	/// <summary>the output layer unit activation function type</summary>
 	ActiveT mOutUnitType;
 	
-	// the output layer unit activation function slope value
+	/// <summary>the output layer unit activation function slope value</summary>
 	double mOutUnitSlope;
 
-	// the output layer unit activation function amplify value
+	/// <summary>the output layer unit activation function amplify value</summary>
 	double mOutUnitAmplify;
 
-	// the weighted connections linking the network layers
+	/// <summary>the weighted connections linking the network layers</summary>
 	vector<NNetWeightedConnect> mLayers;
 
-	// the activation values for each of the network layers
+	/// <summary>the activation values for each of the network layers</summary>
 	vector<vector<double> > mActivations;
 
-	// the input values for the layer activation functions
+	/// <summary>the input values for the layer activation functions</summary>
 	vector<vector<double> > mUnitInputs;
 
-	// the hidden layer unit activation function types
+	/// <summary>the hidden layer unit activation function types</summary>
 	vector<ActiveT> mActiveUnits;
 	
-	// the hidden layer unit activation function slope values
+	/// <summary>the hidden layer unit activation function slope values</summary>
 	vector<double> mActiveSlope;
 	
-	// the hidden layer unit activation function amplify values
+	/// <summary>the hidden layer unit activation function amplify values</summary>
 	vector<double> mActiveAmplify;
 };
 

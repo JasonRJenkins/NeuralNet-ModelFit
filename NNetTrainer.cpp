@@ -37,7 +37,7 @@
 
     // the training set needs to be stored as follows
     vector<vector<double> > inputVectors;
-    vector<vector<double> > targetVectors
+    vector<vector<double> > targetVectors;
 
     // a routine to populate the training set is required ...
 
@@ -102,8 +102,10 @@
 #include <iostream>
 
 /////////////////////////////////////////////////////////////////////
-// default constructor
-
+/// <summary>
+/// default constructor
+/// </summary>
+/// 
 NNetTrainer::NNetTrainer()
 {
 	mNetError = 0;
@@ -114,8 +116,10 @@ NNetTrainer::NNetTrainer()
 }
 
 /////////////////////////////////////////////////////////////////////
-// destructor
-
+/// <summary>
+/// destructor
+/// </summary>
+///
 NNetTrainer::~NNetTrainer()
 {
 }
@@ -125,14 +129,15 @@ NNetTrainer::~NNetTrainer()
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// setLearningConstant - sets the learning constant training parameter
-//
-// The learning constant governs the 'size' of the steps taken down
-// the error surface. Larger values decrease training time but can
-// lead to the system overshooting the minimum value.
-//
-// learnConst (double) - the learning constant value
-
+/// <summary>
+/// sets the learning constant training parameter - 
+/// 
+/// The learning constant governs the 'size' of the steps taken down
+/// the error surface. Larger values decrease training time but can
+/// lead to the system overshooting the minimum value.
+/// </summary>
+/// <param name="learnConst">the learning constant value</param>
+///
 void NNetTrainer::setLearningConstant(double learnConst)
 { 
 	// ignore invalid values
@@ -143,19 +148,19 @@ void NNetTrainer::setLearningConstant(double learnConst)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setMomentum - sets the momentum training parameter
-//
-// The momentum term can be used to weight the search of the error 
-// surface to continue along the same 'direction' as the previous 
-// step.
-//
-// A value of 1 will add 100% of the previous weighted connection
-// value to the next weighted connection adjustment.  If set to 
-// zero (the default value) the next step of the search will always
-// proceed down the steepest path of the error surface.
-// 
-// momentum (double) - the momentum value
-
+/// <summary>
+/// sets the momentum training parameter - 
+/// 
+/// This term can be used to weight the search of the error surface
+/// to continue along the same 'direction' as the previous step.
+/// 
+/// A value of 1 will add 100% of the previous weighted connection
+/// value to the next weighted connection adjustment.  If set to 
+/// zero (the default value) the next step of the search will always
+/// proceed down the steepest path of the error surface.
+/// </summary>
+/// <param name="momentum">the momentum value</param>
+/// 
 void NNetTrainer::setMomentum(double momentum)
 {
 	// ignore invalid values
@@ -166,15 +171,16 @@ void NNetTrainer::setMomentum(double momentum)
 }
 
 /////////////////////////////////////////////////////////////////////
-// trainNeuralNet - trains the supplied neural network
-//
-// Each time this method is called the order of the training set
-// elements are randomly shuffled to try and avoid any potential
-// bias toward certain patterns that may occur if the data
-// were always presented to the trainer in the same order.
-//
-// nNet (NeuralNet) - the neural network to be trained
-
+/// <summary>
+/// trains the supplied neural network - 
+/// 
+/// Each time this method is called the order of the training set
+/// elements are randomly shuffled to try and avoid any potential
+/// bias toward certain patterns that may occur if the data
+/// were always presented to the trainer in the same order.
+/// </summary>
+/// <param name="nNet">the neural network to be trained</param>
+/// 
 void NNetTrainer::trainNeuralNet(NeuralNet& nNet)
 {	
 	int nTrain = (int)mTrainInput.size();
@@ -224,12 +230,13 @@ void NNetTrainer::trainNeuralNet(NeuralNet& nNet)
 }
 
 /////////////////////////////////////////////////////////////////////
-// addToTrainingSet - adds an individual input vector and 
-//                    corresponding target vector to the training set
-//
-// inVec (vector<double>) - a vector of input values
-// outVec (vector<double>) - a vector of target values
-
+/// <summary>
+/// adds an individual input vector and the corresponding target 
+/// vector to the training set
+/// </summary>
+/// <param name="inVec">the input vector values</param>
+/// <param name="outVec">the corresponding target vector values</param>
+/// 
 void NNetTrainer::addToTrainingSet(const vector<double>& inVec,
 								   const vector<double>& outVec)
 {
@@ -238,16 +245,17 @@ void NNetTrainer::addToTrainingSet(const vector<double>& inVec,
 }
 
 /////////////////////////////////////////////////////////////////////
-// addNewTrainingSet - adds a complete training set of input and 
-//                     corresponding target vectors to the trainer
-//
-// A single input element of the training set consists of a vector of
-// values hence the complete set of input values consists of a vector
-// of vectors. The complete target set is similarly defined.
-//
-// inVecs (vector<vector<double>) - a vector of input vector values
-// outVecs (vector<vector<double>) - a vector of target vector values
-
+/// <summary>
+/// adds a complete training set of input and corresponding target 
+/// vectors to the trainer - 
+/// 
+/// A single input element of the training set consists of a vector of
+/// values hence the complete set of input values consists of a vector 
+/// of vectors. The complete target set is similarly defined.
+/// </summary>
+/// <param name="inVecs">a vector of input vector values</param>
+/// <param name="outVecs">a vector of corresponding target vector values</param>
+/// 
 void NNetTrainer::addNewTrainingSet(const vector<vector<double> >& inVecs, 
 									const vector<vector<double> >& outVecs)
 {
@@ -263,16 +271,16 @@ void NNetTrainer::addNewTrainingSet(const vector<vector<double> >& inVecs,
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// calcNetworkError - calculates the network error between a given 
-//                    vector of response values and the corresponding 
-//                    vector of target values
-//
-// response (vector<double>) - the network response values
-// nTarget (int) - the index of the corresponding target values in 
-//                 the training set
-//
-// returns the current network error value
-
+/// <summary>
+/// calculates the network error between a given vector of response 
+/// values and the corresponding vector of target values
+/// </summary>
+/// <param name="response">the network response values</param>
+/// <param name="nTarget">the index of the corresponding target 
+///                       values in the training set</param>
+///
+/// <returns>the current network error value</returns>
+/// 
 double NNetTrainer::calcNetworkError(const vector<double>& response, int nTarget)
 {
 	double error = 0;
@@ -287,16 +295,17 @@ double NNetTrainer::calcNetworkError(const vector<double>& response, int nTarget
 }
 
 /////////////////////////////////////////////////////////////////////
-// calcOutputError - calculates the error signal on each individual
-//                   unit in the output layer
-//
-// Uses the gradient descent method to search the error surface.
-//
-// outErr (vector<double>) - the calculated output unit errors
-// response (vector<double>) - the network response values
-// nTarget (int) - the index of the corresponding target values in 
-//                 the training set
-
+/// <summary>
+/// calculates the error signal on each individual unit in the output layer - 
+/// 
+/// Uses the gradient descent method to search the error surface.
+/// </summary>
+/// <param name="nNet">the network undergoing training</param>
+/// <param name="outErr">the calculated output unit errors</param>
+/// <param name="response">the network response values</param>
+/// <param name="nTarget">the index of the corresponding target values
+///                       in the training set</param>
+/// 
 void NNetTrainer::calcOutputError(NeuralNet& nNet, vector<double>& outErr,
 								  const vector<double>& response, int nTarget)
 {
@@ -324,15 +333,16 @@ void NNetTrainer::calcOutputError(NeuralNet& nNet, vector<double>& outErr,
 }
 
 /////////////////////////////////////////////////////////////////////
-// calcHiddenError - calculates the error signal on each individual 
-//                   unit within the networks hidden layers
-//
-// Uses the gradient descent method to search the error surface.
-//
-// hidErr (vector<vector<double> >) - the calculated hidden unit errors
-// outErr (vector<double>) - the output unit errors
-// nNet (NeuralNet) - the network undergoing training
-
+/// <summary>
+/// calculates the error signal on each individual unit within the 
+/// networks hidden layers - 
+/// 
+/// Uses the gradient descent method to search the error surface.
+/// </summary>
+/// <param name="hidErr">the calculated hidden unit errors</param>
+/// <param name="outErr">the output unit errors</param>
+/// <param name="nNet">the network undergoing training</param>
+/// 
 void NNetTrainer::calcHiddenError(vector<vector<double> >& hidErr, 
 	                              const vector<double>& outErr, NeuralNet& nNet)
 {
@@ -391,12 +401,13 @@ void NNetTrainer::calcHiddenError(vector<vector<double> >& hidErr,
 }
 
 /////////////////////////////////////////////////////////////////////
-// calcOutputWtAdjust - calculates the weight adjustments for the 
-//                      connections into the output layer
-//
-// outErr (vector<double>) - the output unit errors
-// nNet (NeuralNet) - the network undergoing training
-
+/// <summary>
+/// calculates the weight adjustments for the connections into the 
+/// output layer
+/// </summary>
+/// <param name="outErr">the output unit errors</param>
+/// <param name="nNet">the network undergoing training</param>
+/// 
 void NNetTrainer::calcOutputWtAdjust(const vector<double>& outErr, NeuralNet& nNet)
 {
 	vector<double> xVec;
@@ -461,13 +472,14 @@ void NNetTrainer::calcOutputWtAdjust(const vector<double>& outErr, NeuralNet& nN
 }
 
 /////////////////////////////////////////////////////////////////////
-// calcHiddenWtAdjust - calculates the weight adjustments for the 
-//                      connections into the hidden layers
-//
-// hidErrSig (vector<vector<double> >) - the hidden unit errors
-// inputVec (vector<double>) - the current training set input values
-// nNet (NeuralNet) - the network undergoing training
-
+/// <summary>
+/// calculates the weight adjustments for the connections into the 
+/// hidden layers
+/// </summary>
+/// <param name="hidErrSig">the hidden unit errors</param>
+/// <param name="inputVec">the current training set input values</param>
+/// <param name="nNet">the network undergoing training</param>
+/// 
 void NNetTrainer::calcHiddenWtAdjust(const vector<vector<double> >& hidErrSig,
 									 const vector<double>& inputVec, NeuralNet& nNet)
 {
@@ -549,16 +561,16 @@ void NNetTrainer::calcHiddenWtAdjust(const vector<vector<double> >& hidErrSig,
 }
 
 /////////////////////////////////////////////////////////////////////
-// getGradient - gets the gradient of the activation function at the 
-//               given value of x
-//
-// unitType (ActiveT) - the activation function type
-// slope (double) - the activation function slope value
-// amplify (double) - the activation function amplify value
-// x (double) - calculates the gradient at this value
-//
-// returns the gradient of the activation function at the given value
-
+/// <summary>
+/// gets the gradient of the activation function at the given value of x
+/// </summary>
+/// <param name="unitType">the activation function type</param>
+/// <param name="slope">the activation function slope value</param>
+/// <param name="amplify">the activation function amplify value</param>
+/// <param name="x">calculates the gradient at this value</param>
+///
+/// <returns>the gradient of the activation function at the given value</returns>
+/// 
 double NNetTrainer::getGradient(ActiveT unitType, double slope, double amplify, double x)
 {
 	double gradient = 0;	

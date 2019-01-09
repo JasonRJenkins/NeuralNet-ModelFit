@@ -26,8 +26,10 @@
 #include <stdexcept>
 
 /////////////////////////////////////////////////////////////////////
-// default constructor
-
+/// <summary>
+/// default constructor
+/// </summary>
+/// 
 DataTable::DataTable()
 {
 	m_Rows = 0;
@@ -36,12 +38,13 @@ DataTable::DataTable()
 }
 
 /////////////////////////////////////////////////////////////////////
-// constructs a DataTable object from a .CSV file representation
-//
-// fName (string) - the name of the .CSV file containing the data
-// header (bool) - set it to true if the data has a header row 
-//                 containing column names otherwise set it to false
-
+/// <summary>
+/// constructs a DataTable object from a .CSV file representation
+/// </summary>
+/// <param name="fName">the name of the .CSV file containing the data</param>
+/// <param name="header">set it to true if the data has a header row
+///                      containing column names otherwise set it to false</param>
+///                      
 DataTable::DataTable(const string& fName, bool header)
 {
 	m_Rows = 0;
@@ -59,8 +62,10 @@ DataTable::DataTable(const string& fName, bool header)
 }
 
 /////////////////////////////////////////////////////////////////////
-// destructor
-
+/// <summary>
+/// destructor
+/// </summary>
+///
 DataTable::~DataTable()
 {
 }
@@ -70,8 +75,10 @@ DataTable::~DataTable()
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// clearTable - clears a DataTable object ready for re-use
-
+/// <summary>
+/// clears a DataTable object ready for re-use
+/// </summary>
+/// 
 void DataTable::clearTable()
 {
 	m_Rows = 0;
@@ -86,12 +93,12 @@ void DataTable::clearTable()
 }
 
 /////////////////////////////////////////////////////////////////////
-// addRawRow - adds a new row to the DataTable
-//
-// row (vector<string>) - a vector of column values in string format
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// adds a new row to the DataTable
+/// </summary>
+/// <param name="row">a vector of column values in string format</param>
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::addRawRow(const vector<string>& row)
 {
 	int retVal = 0;
@@ -126,13 +133,14 @@ int DataTable::addRawRow(const vector<string>& row)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getRawRow - gets a data row with the values in string format
-//
-// nRow (int) - the numeric index of the row to be returned
-// row (vector<string>) - the row data as a vector of string values
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// gets a data row with the values in string format
+/// </summary>
+/// <param name="nRow">the numeric index of the row to be returned</param>
+/// <param name="row">the row data as a vector of string values</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::getRawRow(int nRow, vector<string>& row)
 {
 	int retVal = 0;
@@ -154,19 +162,20 @@ int DataTable::getRawRow(int nRow, vector<string>& row)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getNumericRow - gets a data row with the values in double format
-//
-// Non-numeric data is automatically assigned a numeric alias if an
-// alias has not already been set up. The first non-numeric entry in 
-// a column is assigned the value 0 the next distinct entry is 
-// assigned the value 1 and the next 2 and so on. You can set your 
-// own alias values using the setAlias method
-//
-// nRow (int) - the numeric index of the row to be returned
-// row (vector<double>) - the row data as a vector of double values
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// gets a data row with the values in double format - 
+/// 
+/// Non-numeric data is automatically assigned a numeric alias if an
+/// alias has not already been set up. The first non-numeric entry in 
+/// a column is assigned the value 0 the next distinct entry is 
+/// assigned the value 1 and the next 2 and so on. You can set your 
+/// own alias values using the setAlias method.
+/// </summary>
+/// <param name="nRow">the numeric index of the row to be returned</param>
+/// <param name="row">the row data as a vector of double values</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::getNumericRow(int nRow, vector<double>& row)
 {
 	int retVal = 0;
@@ -233,13 +242,14 @@ int DataTable::getNumericRow(int nRow, vector<double>& row)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getRawCol - gets a data column with the values in string format
-//
-// nCol (int) - the numeric index of the column to be returned
-// col (vector<string>) - the column data as a vector of string values
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// gets a data column with the values in string format
+/// </summary>
+/// <param name="nCol">the numeric index of the column to be returned</param>
+/// <param name="col">the column data as a vector of string values</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::getRawCol(int nCol, vector<string>& col)
 {
 	int retVal = 0;
@@ -265,13 +275,14 @@ int DataTable::getRawCol(int nCol, vector<string>& col)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getRawCol - gets a data column with the values in string format
-//
-// sCol (string) - the name of the column to be returned
-// col (vector<string>) - the column data as a vector of string values
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// gets a data column with the values in string format
+/// </summary>
+/// <param name="sCol">the name of the column to be returned</param>
+/// <param name="col">the column data as a vector of string values</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::getRawCol(const string& sCol, vector<string>& col)
 {
 	int iCol;
@@ -298,19 +309,20 @@ int DataTable::getRawCol(const string& sCol, vector<string>& col)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getNumericCol - gets a data column with the values in double format
-//
-// Non-numeric data is automatically assigned a numeric alias if an
-// alias has not already been set up. The first non-numeric entry in 
-// a column is assigned the value 0 the next distinct entry is 
-// assigned the value 1 and the next 2 and so on. You can set your 
-// own alias values using the setAlias method
-//
-// nCol (int) - the numeric index of the column to be returned
-// col (vector<double>) - the column data as a vector of double values
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// gets a data column with the values in double format - 
+/// 
+/// Non-numeric data is automatically assigned a numeric alias if an
+/// alias has not already been set up. The first non-numeric entry in 
+/// a column is assigned the value 0 the next distinct entry is 
+/// assigned the value 1 and the next 2 and so on. You can set your 
+/// own alias values using the setAlias method.
+/// </summary>
+/// <param name="nCol">the numeric index of the column to be returned</param>
+/// <param name="col">the column data as a vector of double values</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::getNumericCol(int nCol, vector<double>& col)
 {
 	int retVal = 0;
@@ -372,13 +384,14 @@ int DataTable::getNumericCol(int nCol, vector<double>& col)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getNumericCol - gets a data column with the values in double format
-//
-// sCol (string) - the name of the column to be returned
-// col (vector<double>) - the column data as a vector of double values
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// gets a data column with the values in double format
+/// </summary>
+/// <param name="sCol">the name of the column to be returned</param>
+/// <param name="col">the column data as a vector of double values</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::getNumericCol(const string& sCol, vector<double>& col)
 {
 	int iCol;
@@ -405,13 +418,13 @@ int DataTable::getNumericCol(const string& sCol, vector<double>& col)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setAlias - sets a numeric alias for a given string value and 
-//            column index
-//
-// sValue (string) - the value to be given an alias
-// dAlias (double) - the alias to be applied
-// nCol (int) - the column index of the column containing the value
-
+/// <summary>
+/// sets a numeric alias for a given string value and column index
+/// </summary>
+/// <param name="sValue">the value to be given an alias</param>
+/// <param name="dAlias">the alias to be applied</param>
+/// <param name="nCol">the column index of the column containing the value</param>
+/// 
 void DataTable::setAlias(const string& sValue, double dAlias, int nCol)
 {
 	string sAlias = to_string((long double)dAlias);
@@ -440,14 +453,14 @@ void DataTable::setAlias(const string& sValue, double dAlias, int nCol)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getAliasValue - returns the numeric alias for a given string value
-//                 and column index
-//
-// sValue (string) - the string value whos alias is required
-// nCol (int) - the column index of the column containing the value
-//
-// returns the alias value if it exists otherwise -1e10
-
+/// <summary>
+/// returns the numeric alias for a given string value and column index
+/// </summary>
+/// <param name="sValue">the string value whose alias is required</param>
+/// <param name="nCol">the column index of the column containing the value</param>
+///
+/// <returns>the alias value if it exists otherwise -1e10</returns>
+/// 
 double DataTable::getAliasValue(const string& sValue, int nCol)
 {
 	double value = -1e10;
@@ -489,12 +502,13 @@ double DataTable::getAliasValue(const string& sValue, int nCol)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getColIndex - returns the column index for a given column name
-//
-// sColName (string) - the column name string "index"
-//
-// returns the integer index of the column or -1 if it doesn't exist
-
+/// <summary>
+/// returns the column index for a given named column
+/// </summary>
+/// <param name="sColName">the column name</param>
+///
+/// <returns>the integer index of the named column or -1 if it doesn't exist</returns>
+/// 
 int DataTable::getColIndex(const string& sColName)
 {
 	int iCol = -1;
@@ -511,10 +525,11 @@ int DataTable::getColIndex(const string& sColName)
 }
 
 /////////////////////////////////////////////////////////////////////
-// getColumnNames - gets the column names vector
-//
-// colNames (vector<string>) - the vector containing the column names
-
+/// <summary>
+/// gets the column names vector
+/// </summary>
+/// <param name="colNames">the vector containing the column names</param>
+/// 
 void DataTable::getColumnNames(vector<string>& colNames)
 {
 	if(m_Header == true)
@@ -524,10 +539,11 @@ void DataTable::getColumnNames(vector<string>& colNames)
 }
 
 /////////////////////////////////////////////////////////////////////
-// setColumnNames - sets the column names vector
-//
-// colNames (vector<string>) - the vector containing the column names
-
+/// <summary>
+/// sets the column names vector
+/// </summary>
+/// <param name="colNames">the vector containing the column names</param>
+/// 
 void DataTable::setColumnNames(const vector<string>& colNames)
 {
 	int size = (int)colNames.size();
@@ -553,12 +569,13 @@ void DataTable::setColumnNames(const vector<string>& colNames)
 }
 
 /////////////////////////////////////////////////////////////////////
-// writeToFile - write this DataTable object to a .CSV file
-//
-// fName (string) - the name of the file to write the data to
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// write this DataTable object to a .CSV file
+/// </summary>
+/// <param name="fName">the name of the file to write the data to</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::writeToFile(const string& fName)
 {
 	ofstream outFile(fName);
@@ -578,15 +595,15 @@ int DataTable::writeToFile(const string& fName)
 }
 
 /////////////////////////////////////////////////////////////////////
-// readFromFile - clears and re-instantiates this DataTable object
-//                from a .CSV file representation
-//
-// fName (string) - the name of the .CSV file containing the data
-// header (bool) - true if the data has a header row containing 
-//                 column names otherwise set to false
-//
-// returns 0 if successful otherwise -1
-
+/// <summary>
+/// clears and re-instantiates this DataTable object from a .CSV file representation
+/// </summary>
+/// <param name="fName">the name of the .CSV file containing the data</param>
+/// <param name="header">true if the data has a header row containing
+///                      column names otherwise set to false</param>
+///
+/// <returns>0 if successful otherwise -1</returns>
+/// 
 int DataTable::readFromFile(const string& fName, bool header)
 {
 	int retVal = 0;
@@ -615,10 +632,11 @@ int DataTable::readFromFile(const string& fName, bool header)
 /////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////
-// writeToStream - writes out the table data to a file stream buffer
-//
-// ofile (ofstream) - the output file stream buffer
-
+/// <summary>
+/// writes out the table data to a file stream buffer
+/// </summary>
+/// <param name="ofile">the output file stream buffer</param>
+/// 
 void DataTable::writeToStream(ofstream& ofile)
 {
 	// output the header
@@ -656,12 +674,13 @@ void DataTable::writeToStream(ofstream& ofile)
 }
 
 /////////////////////////////////////////////////////////////////////
-// readFromStream - reads in the table data from a file stream buffer
-//
-// fName (string) - the name of the file to read the data from
-// header (bool) - set to true if the input file has a header row 
-//                 containing column names otherwise set to false
-
+/// <summary>
+/// reads in the table data from a file stream buffer
+/// </summary>
+/// <param name="fName">the name of the file to read the data from</param>
+/// <param name="header">set to true if the input file has a header row 
+///                      containing column names otherwise set to false</param>
+///                      
 void DataTable::readFromStream(const string& fName, bool header)
 {	
 	string line;

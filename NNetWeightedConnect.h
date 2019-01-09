@@ -22,7 +22,11 @@
 using namespace std;
 
 /////////////////////////////////////////////////////////////////////
-
+/// <summary>
+/// This class is used by the neural network class (NeuralNet) and represents
+/// the weighted connections that link the layers of a neural network together.
+/// </summary>
+/// 
 class NNetWeightedConnect
 {
 public:
@@ -35,10 +39,14 @@ public:
 	// sets the number of input and output nodes
 	void setNumNodes(int numInNodes, int numOutNodes, double initRange = 2.0);
 
-	// returns the number of input nodes
+	/// <summary>
+	/// <returns>the number of input nodes</returns>
+	/// </summary>
 	int getNumInputNodes () const { return mNumInNodes; }
 
-	// returns the number of output nodes
+	/// <summary>
+	/// <returns>the number of output nodes</returns>
+	/// </summary>
 	int getNumOutputNodes () const { return mNumOutNodes; }
 
 	// sets the input values for the weighted connection
@@ -64,13 +72,19 @@ private:
 	double getNodeValue(int node);
 
 private:
-	int mNumInNodes;    // the number of input nodes
-	int mNumOutNodes;   // the number of output bodes
+	/// <summary>the number of input nodes</summary>
+	int mNumInNodes;
 
-	vector<double> mInputs;     // the input values
-	vector<double> mOutputs;    // the output values
+	/// <summary>the number of output nodes</summary>
+	int mNumOutNodes;
 
-	// the weighted connection values 
+	/// <summary>the input values</summary>
+	vector<double> mInputs;
+
+	/// <summary>the output values</summary>
+	vector<double> mOutputs;
+
+	/// <summary>the weighted connection values</summary>
 	vector<vector<double> > mWeights;	
 };
 
