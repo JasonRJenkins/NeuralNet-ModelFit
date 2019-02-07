@@ -1,7 +1,7 @@
 # NeuralNet-ModelFit
-Implements a feedforward neural network and uses it to fit a simple model to a number of datasets.
+Implements a single hidden layer feedforward neural network and uses it to fit a model to a number of datasets.
 
-This project contains the implementation of a feedforward neural network.  The implementation is demonstrated by using a neural network to model the potential relationship between a single response Y and a single predictor variable X in three example datasets that can be selected by the user. The three examples are:
+This project contains the implementation of a single hidden layer feedforward neural network.  The implementation is demonstrated by using a neural network to model the potential relationship between a single response Y and a single predictor variable X in three example datasets that can be selected by the user. The three examples are:
 
  1) The relationship between 'horsepower' (X) and 'mpg' (Y) in the 'Auto' database.
 
