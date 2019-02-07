@@ -609,8 +609,8 @@ int DataTable::readFromFile(const string& fName, bool header)
 	int retVal = 0;
 
 	clearTable();
-
 	readFromStream(fName, header);
+	m_Header = header;
 
 	// initialise the alias vector values to zero
 	for(int i = 0; i < m_Cols; i++)
@@ -735,6 +735,10 @@ void DataTable::readFromStream(const string& fName, bool header)
 						{
 							sValue.erase(0, sValue.find_first_not_of(t));		// left trim
 							sValue.erase(sValue.find_last_not_of(t) + 1);		// right trim
+						}
+						else
+						{
+							sValue = "<blank>";
 						}
 
 						m_ColumnNames.push_back(sValue);

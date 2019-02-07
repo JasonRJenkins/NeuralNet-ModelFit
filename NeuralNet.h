@@ -37,49 +37,53 @@ public:
 	// constructs a NeuralNet object from a file
 	NeuralNet(const string& fName);
 	
+	// clears a NeuralNet object ready for re-use
+	void clearNeuralNetwork();
+
 	// sets the number of input units
 	void setNumInputs(int numInputs);
 
 	// sets the number of output units
 	void setNumOutputs(int numOutputs);
 
-	// set the output layer unit activation function type
+	// set the output layer units activation function type
 	void setOutputUnitType(ActiveT unitType);
 
-	// set the output layer unit activation function slope value
+	// set the output layer units activation function slope value
 	void setOutputUnitSlope(double slope);
 
-	// set the output layer unit activation function amplify value
+	// set the output layer units activation function amplify value
 	void setOutputUnitAmplify(double amplify);
 	
 	/// <summary>
-	/// <returns>the number of input units</returns>
 	/// </summary>
+	/// <returns>the number of input units</returns>
 	int getNumInputs() const { return mNumInputs; }
 	
-	/// <summary>
-	/// <returns>the number of output units</returns>
+	/// <summary>	
 	/// </summary>
+	/// <returns>the number of output units</returns>
 	int getNumOutputs() const { return mNumOutputs; }
 	
 	/// <summary>
-	/// <returns>the number of hidden layers</returns>
+	///
 	/// </summary>
+	/// <returns>the number of hidden layers</returns>
 	int getNumLayers() const { return mNumLayers; }
 
-	/// <summary>
-	/// <returns>the output layer unit activation function type</returns>
+	/// <summary>	
 	/// </summary>
+	/// <returns>the output layer units activation function type</returns>
 	ActiveT getOutputUnitType() const { return mOutUnitType; }
 
-	/// <summary>
-	/// <returns>the output layer unit activation function slope value</returns>
+	/// <summary>	
 	/// </summary>
+	/// <returns>the output layer units activation function slope value</returns>
 	double getOutputUnitSlope() const { return mOutUnitSlope; };
 
-	/// <summary>
-	/// <returns>the output layer unit activation function amplify value</returns>
+	/// <summary>	
 	/// </summary>
+	/// <returns>the output layer units activation function amplify value</returns>
 	double getOutputUnitAmplify() const { return mOutUnitAmplify; };
 
 	// adds a new hidden layer

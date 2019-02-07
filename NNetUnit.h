@@ -12,6 +12,10 @@
 #pragma once
 
 /////////////////////////////////////////////////////////////////////
+
+#include <string>
+
+/////////////////////////////////////////////////////////////////////
 /// The available activation functions as an enumerated type
 
 typedef enum { kThreshold, kUnipolar, kBipolar, kTanh, kGauss, kArctan, kSin,
@@ -46,6 +50,9 @@ public:
 
 	// returns activation value of the neuron
 	double getActivation();
+
+	// converts an ActiveT enumeration to its string representation
+	static std::string ActiveTtoString(const ActiveT activEnum);
 
 private:
 	/// <summary>the unit activation function type</summary>

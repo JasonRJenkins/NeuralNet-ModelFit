@@ -125,6 +125,27 @@ NeuralNet::~NeuralNet()
 // Public Methods
 /////////////////////////////////////////////////////////////////////
 
+/// <summary>
+/// clears a NeuralNet object ready for re-use
+/// </summary>
+/// 
+void NeuralNet::clearNeuralNetwork()
+{
+	mNumInputs = 0;
+	mNumOutputs = 0;
+	mNumLayers = 0;
+	mOutUnitType = kThreshold;
+	mOutUnitSlope = 1;
+	mOutUnitAmplify = 1;
+
+	mLayers.clear();
+	mActivations.clear();
+	mUnitInputs.clear();
+	mActiveUnits.clear();
+	mActiveSlope.clear();
+	mActiveAmplify.clear();
+}
+
 /////////////////////////////////////////////////////////////////////
 /// <summary>
 /// sets the number of input units
@@ -157,7 +178,7 @@ void NeuralNet::setNumOutputs(int numOutputs)
 
 /////////////////////////////////////////////////////////////////////
 /// <summary>
-/// sets the output layer unit activation function type
+/// sets the output layer units activation function type
 /// </summary>
 /// <param name="unitType">the activation function type</param>
 ///
@@ -168,7 +189,7 @@ void NeuralNet::setOutputUnitType(ActiveT unitType)
 
 /////////////////////////////////////////////////////////////////////
 /// <summary>
-/// sets the output layer unit activation function slope value
+/// sets the output layer units activation function slope value
 /// </summary>
 /// <param name="slope">the slope value for the activation function</param>
 ///
@@ -183,7 +204,7 @@ void NeuralNet::setOutputUnitSlope(double slope)
 
 /////////////////////////////////////////////////////////////////////
 /// <summary>
-/// sets the output layer unit activation function amplify value
+/// sets the output layer units activation function amplify value
 /// </summary>
 /// <param name="amplify">the amplify value for the activation function</param>
 ///

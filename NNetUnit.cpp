@@ -125,6 +125,78 @@ NNetUnit::~NNetUnit()
 
 /////////////////////////////////////////////////////////////////////
 /// <summary>
+/// converts an ActiveT enumeration to its string representation
+/// </summary>
+/// <param name="activEnum">the enumeration value to be converted</param>
+///
+std::string NNetUnit::ActiveTtoString(const ActiveT activEnum)
+{
+	std::string sValue = "Unknown";
+
+	switch (activEnum)
+	{
+	case kThreshold:
+		sValue = "Threshold";
+		break;
+
+	case kUnipolar:
+		sValue = "Unipolar";
+		break;
+
+	case kBipolar:
+		sValue = "Bipolar";
+		break;
+
+	case kTanh:
+		sValue = "Tanh";
+		break;
+
+	case kGauss:
+		sValue = "Gauss";
+		break;
+
+	case kArctan:
+		sValue = "Arctan";
+		break;
+
+	case kSin:
+		sValue = "Sin";
+		break;
+
+	case kCos:
+		sValue = "Cos";
+		break;
+
+	case kSinC:
+		sValue = "SinC";
+		break;
+
+	case kElliot:
+		sValue = "Elliot";
+		break;
+
+	case kLinear:
+		sValue = "Linear";
+		break;
+
+	case kISRU:
+		sValue = "ISRU";
+		break;
+
+	case kSoftSign:
+		sValue = "SoftSign";
+		break;
+
+	case kSoftPlus:
+		sValue = "SoftPlus";
+		break;
+	}
+
+	return sValue;
+}
+
+/////////////////////////////////////////////////////////////////////
+/// <summary>
 /// sets the slope parameter of the activation function - 
 ///
 /// This parameter can be used to adjust the sensitivity of the 
