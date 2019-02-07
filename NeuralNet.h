@@ -128,13 +128,13 @@ private:
 	/// <summary>the number of hidden layers</summary>
 	int mNumLayers;
 	
-	/// <summary>the output layer unit activation function type</summary>
+	/// <summary>the output layer units activation function type</summary>
 	ActiveT mOutUnitType;
 	
-	/// <summary>the output layer unit activation function slope value</summary>
+	/// <summary>the output layer units activation function slope value</summary>
 	double mOutUnitSlope;
 
-	/// <summary>the output layer unit activation function amplify value</summary>
+	/// <summary>the output layer units activation function amplify value</summary>
 	double mOutUnitAmplify;
 
 	/// <summary>the weighted connections linking the network layers</summary>
@@ -146,13 +146,13 @@ private:
 	/// <summary>the input values for the layer activation functions</summary>
 	vector<vector<double> > mUnitInputs;
 
-	/// <summary>the hidden layer unit activation function types</summary>
+	/// <summary>the hidden layer units activation function types</summary>
 	vector<ActiveT> mActiveUnits;
 	
-	/// <summary>the hidden layer unit activation function slope values</summary>
+	/// <summary>the hidden layer units activation function slope values</summary>
 	vector<double> mActiveSlope;
 	
-	/// <summary>the hidden layer unit activation function amplify values</summary>
+	/// <summary>the hidden layer units activation function amplify values</summary>
 	vector<double> mActiveAmplify;
 };
 
